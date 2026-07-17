@@ -1,0 +1,26 @@
+name: face-scan
+on:
+  schedule:
+    - cron: '*/30 * * * *'
+  workflow_dispatch: {}
+
+concurrency:
+  group: face-scan
+  cancel-in-progress: false
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install
+        run: npm install --no-audit --no-fund
+      - name: Scan faces
+        run: node scan.js
+        env:
+          MW_BASE: https://mywedflix.com
+          MW_TOKEN: ${{ secrets.MW_TOKEN }}
