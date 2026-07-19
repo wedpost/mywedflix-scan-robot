@@ -1,9 +1,0 @@
-{
-  "name": "mywedflix-scan-robot",
-  "private": true,
-  "description": "Automatic face-scan robot for mywedflix — runs on GitHub Actions",
-  "dependencies": {
-    "@tensorflow/tfjs-node": "4.22.0",
-    "@vladmandic/face-api": "1.7.15"
-  }
-}
