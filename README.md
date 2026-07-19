@@ -16,8 +16,8 @@ computer khula rakhne ki zaroorat nahi.
 
 3. Is folder ki **teeno cheezein** upload karo:
    repo page pe **uploading an existing file** link → ye files drag karo:
-   - `scan.js`
-   - `package.json`
+   - `scan.py`  (naya ArcFace robot — pehle se zyada accurate)
+   - `requirements.txt`
    - `.github` folder (poora — isme workflows/scan.yml hai)
 
    > Agar browser se `.github` folder upload na ho to: **Add file → Create new file**,
@@ -36,6 +36,10 @@ computer khula rakhne ki zaroorat nahi.
 Bas. Ab har 30 minute me robot khud check karega — Drive/Photos me nayi photos
 dali to sirf wahi scan hongi, sab ho chuka to seconds me so jayega.
 
+> Pehla run thoda lamba (~1-2 min) hoga — InsightFace ka model download hota hai,
+> phir wo cache ho jata hai aur agle run fast hote hain. Yehi robot guests ke
+> selfie enrollment bhi process karta hai (photos dhoondhne ke liye).
+
 ## Kaise pata chalega ki chal raha hai?
 
 - GitHub me **Actions** tab — har run ka log: kaunsa premiere, kitni photos, kitne faces
@@ -50,5 +54,7 @@ dali to sirf wahi scan hongi, sab ho chuka to seconds me so jayega.
   ~60,000 photos/month ka scan aa jata hai, aur logs sirf aapko dikhte hain.
 - GitHub 60 din tak repo me koi activity na ho to schedule ko pause kar deta hai
   (email aata hai) — kabhi bhi README me ek space add karke commit kar dena, phir chalu
-- Robot ke saath purane auto-scans (premiere kholne par, Scanner page) bhi chalte rahenge — sab ek hi checkpoint system share karte hain, kaam kabhi double nahi hota
+- Ab **sirf yehi robot** face-scan karta hai — purana browser-wala scanner (premiere
+  kholne par / Scanner page) band kar diya gaya hai (wo kam-accurate 128-dim tha).
+  Scanner aur Face-scan page ab sirf **live status** dikhate hain.
 - Site ka password/database robot ke paas NAHI hai — sirf scan-only token hai
