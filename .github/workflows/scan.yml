@@ -1,7 +1,7 @@
 name: face-scan
 on:
   schedule:
-    - cron: '*/30 * * * *'
+    - cron: '9,39 * * * *'
   workflow_dispatch: {}
 
 concurrency:
@@ -14,13 +14,20 @@ jobs:
     timeout-minutes: 55
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-python@v5
         with:
-          node-version: 20
+          python-version: '3.11'
+      - name: Cache InsightFace model
+        uses: actions/cache@v4
+        with:
+          path: ~/.insightface
+          key: insightface-buffalo_s-v1
       - name: Install
-        run: npm install --no-audit --no-fund
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
       - name: Scan faces
-        run: node scan.js
+        run: python scan.py
         env:
           MW_BASE: https://mywedflix.com
           MW_TOKEN: ${{ secrets.MW_TOKEN }}
